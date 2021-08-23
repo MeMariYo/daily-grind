@@ -1,1 +1,235 @@
-<h1>Daily Grind</h1> 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>LARGEBUCK$ Coffee</title>
+    <meta name="robots" content="noindex,nofollow" />
+	<!-- below is a google font, go to https://www.google.com/fonts to get yours! -->
+	<link href='https://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
+	<link id="mainStylesheet" rel="stylesheet" href="css/default.css" />
+    <style type="text/css">
+	
+        html {background-color:#FF7518;/* pumpkin - overwrites default */}
+        
+        .feature {color:#FF7518; /* daily feature color - pumpkin! */}
+        
+		.masthead{
+			font-family: 'Holtwood One SC', serif; /* required for google font */
+			font-size:3em;
+		}
+	
+		#logo{
+			float:right;
+			display:inline-block;
+			padding:2px;
+			max-width:100px; /* actual size of image */
+			width:20%; /* approximate size taken on screen in maximum view */
+		}
+	
+		#coffee {
+			float:left;
+			display:inline-block;
+			padding:20px;
+			max-width:300px; /* best if actual size of image */
+			width:33%; /* approximate size taken on screen in maximum view */
+		}
+
+        h3.slogan{
+           font-style:italic; /* make the slogan italics */ 
+        }
+    </style>
+   
+    <!--[if ltIE9]>
+       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+     <![endif]-->
+</head>
+<body>
+	<header>
+	    <img src="images/largebucks-logo.jpg" alt="You drink our coffee, we make large bucks!" class="flexible" id="logo" />
+		<h1 class="masthead">LARGEBUCK$ COFFEE</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+                <li><a href="#">Sample Link</a></li>
+			</ul>
+		</nav>
+	</header>
+    <main>
+		 <header><h3 class="slogan">You drink our coffee, we make large bucks!</h3></header>
+         <h3>A Javascript Example by Kamari Senters</h3>
+		 <!--<p>
+    		 <img src="images/pumpkin-spice-latte.jpg" alt="Our Pumpkin Spice Latte tastes great on a Fall Day!" id="coffee" />
+             <strong class="feature">Monday's Coffee Special:</strong> Monday's 
+			 daily coffee special is <strong class="feature">Pumpkin Spice 
+			 Latte</strong>, which makes us wish it was always Fall, as this is 
+			 one of our top sellers!</p>-->
+		 <div id="mydiv"></div> 
+         <p>This example uses HTML/CSS & JavaScript to create a single page that rotates unique colors and content for each weekday (Sunday to Saturday) into the page. Content includes:</p>
+	     <p>
+			 <ul>
+				 <li>The name of the Coffee</li>
+				 <li>A picture of coffee, including the alt tag of attribute.</li>
+				 <li>A color associated with the coffee</li>
+				 <li>A description of the coffee</li>
+			 </ul> 
+		 </p>
+         
+		 <h3>Click bellow to view coffee specials for other days of the week</h3>
+		 <p><a href="?day=0">Sunday</a></p>
+		 <p><a href="?day=1">Monday</a></p>
+		 <p><a href="?day=2">Tuesday</a></p>
+		 <p><a href="?day=3">Wednesday</a></p>
+		 <p><a href="?day=4">Thursday</a></p>
+		 <p><a href="?day=5">Friday</a></p>
+		 <p><a href="?day=6">Satuday</a></p>
+
+
+
+	</main>
+    <footer>
+      <small>&copy; 2014-2015, All Rights Reserved ~
+      <a href="http://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
+      <a href="http://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
+      </small>
+    </footer>
+    <!-- END Footer -->
+<script>
+	
+	function coffeeTemplate(coffee){
+        let myReturn = `<p>
+    		 <img src="${coffee.pic}" alt="${coffee.alt}" id="coffee" />
+             <strong>${coffee.day}'s Coffee Special:</strong> 
+			 ${coffee.day}'s daily coffee special is <strong class="feature">
+			 ${coffee.name}</strong>, ${coffee.desc}!</p>`;
+        return myReturn;
+	};
+	
+	let coffee = "";
+
+    let myDate = new Date();
+	
+	let today = myDate.getDay();
+
+    const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString)
+
+    if(urlParams.has('day')){
+		today = urlParams.get('day');
+	    today = parseInt(today);
+	}
+
+	console.log(today);
+
+    switch(today){
+	
+		case 0: 
+			coffee = {
+				name: "Cold Brew",
+				pic: "images/cold-brew.jpg",
+				alt: "Cold Brew Coffee",
+				color: "Sienna",
+				day: "Sunday",
+				desc: `Nothing like a fresh iced coffee in the morning. 
+				Sometimes you don't want to burn your tounge but you still want coffee.
+				This drink was made especially for you. Get a Iced coffee today! `,
+			};		
+		break;
+
+		case 1: 
+			coffee = {
+				name: "Pumpkin Spice Latte",
+				pic: "images/pumpkin-spice-latte.jpg",
+				alt: "Pumpkin Spice Latte",
+				color: "Coral",
+				day: "Monday",
+				desc: `I love me some pumpkin spice. This fall specail come and goes quick.
+				Don't miss out on this awesome drink. Get it well its in season. 
+				Starbucks doesn't come close to this!`,
+			};		
+		break;
+
+		case 2: 
+			coffee = {
+				name: "Drip",
+				pic: "images/Drip.jpg",
+				alt: "Drip Coffee",
+				color: "#5d432c",
+				day: "Tuesday",
+				desc: `I just need the drip! This coffe drips so hard it might cause a tsunami. This classic 
+				coffee is for those looking for etra bold flavor. If you love a nice black 
+				coffee to wake up in the morning come and get it! Maybe grab a doughnut on your way out!`,
+			};		
+		break;
+
+		case 3: 
+			coffee = {
+				name: "Caramel Latte",
+				pic: "images/caramel-latte.jpg",
+				alt: "Caramel Latte",
+				color: "#f4a460",
+				day: "Wednesday",
+				desc: `You can never go wrong with a caramel latte! Its the berfect mixture of sweet
+				caramel and nice wrm coffee. This epic blend is easily a fan favorite. Don't miss out 
+				on this opertunity to bless your taste buds. Get it while it's hot! `,
+			};		
+		break;
+
+		case 4: 
+			coffee = {
+				name: "Bubble Tea",
+				pic: "images/bubble-tea.jpg",
+				alt: "Bubble Tea",
+				color: "#cd7f32",
+				day: "Thursday",
+				desc: `The drink sweeping the nation. The drink has quickly become an american favorite. 
+				Origionally from Taiwan the drink contains chewy tapioca balls. 
+				It can contain many different toppings. Try one today!
+				 `,
+			};		
+		break;
+
+		case 5: 
+			coffee = {
+				name: "Frappaccino",
+				pic: "images/frappaccino.jpg",
+				alt: "Frappaccino",
+				color: "#b87333",
+				day: "Friday",
+				desc: `I can't start my day without a frappaccino. 
+				Our home blend frappaccino is like nothing you've ever had before. 
+				The satisfiying sweetened ice flavor will consume your taste buds. 
+				Come to Largebucks today!  `,
+			};		
+		break;
+
+		case 6: 
+			coffee = {
+				name: "Mocha",
+				pic: "images/mocha.jpg",
+				alt: "Mocha",
+				color: "#80461b",
+				day: "Saturday",
+				desc: `Gotta love a good mocha. This is not your avarage caffe 
+				mocha. We pride ourselves in our freshly ground coffee beans. 
+				Enjoy viewing your beautiful foam leaf before satisfiying your caffine craving.`,
+			};		
+		break;
+
+
+		
+
+	}  
+	
+	document.getElementById('mydiv').innerHTML = coffeeTemplate(coffee);
+    document.querySelector('.feature').style.color = coffee.color;
+	document.querySelector('html').style.backgroundColor = coffee.color;   
+
+	console.log(coffee);
+
+</script>
+	
+</body>
+</html>
